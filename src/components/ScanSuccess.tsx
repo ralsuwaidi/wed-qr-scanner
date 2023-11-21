@@ -43,7 +43,7 @@ export default function ScanSuccess({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          {!success ? (
+          {success ? (
             <div className="fixed inset-0 bg-green-200 bg-opacity-75 transition-opacity" />
           ) : (
             <div className="fixed inset-0 bg-red-200 bg-opacity-75 transition-opacity" />
@@ -65,12 +65,12 @@ export default function ScanSuccess({
                 <div>
                   <div
                     className={`mx-auto flex h-12 w-12 items-center justify-center rounded-full ${
-                      !success ? "bg-green-100" : "bg-red-100"
+                      success ? "bg-green-100" : "bg-red-100"
                     }`}
                   >
                     <CheckIcon
                       className={`h-6 w-6 ${
-                        !success ? "text-green-600" : "text-red-600"
+                        success ? "text-green-600" : "text-red-600"
                       }`}
                       aria-hidden="true"
                     />
