@@ -6,9 +6,17 @@ import { updateScannedData } from "@/lib/api";
 import ScanSuccess from "./ScanSuccess";
 import Loading from "./Loading";
 
+export interface ScannerType {
+  count: number;
+  dateTime: string;
+  lastCheckIn?: string;
+  number?: number;
+  letter?: string;
+}
+
 export default function ScannerQr() {
   const [scannedData, setScannedData] = useState("");
-  const [responseData, setResponseData] = useState(null);
+  const [responseData, setResponseData] = useState<ScannerType | null>(null);
   const [isLoading, setIsLoading] = useState(false); // State for loading status
 
   // useEffect to listen for changes in scannedData
@@ -33,9 +41,9 @@ export default function ScannerQr() {
     <div className="w-screen ">
       {isLoading || (scannedData !== "" && responseData === null) ? (
         <Loading />
-      ) : scannedData !== "" ? (
+      ) : responseData !== null ? (
         <ScanSuccess
-          setScannedData={setScannedData}
+          setScannedData={setResponseData}
           responseData={responseData}
         />
       ) : (

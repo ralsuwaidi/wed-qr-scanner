@@ -1,13 +1,14 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
+import { ScannerType } from "./ScannerQr";
 
 export default function ScanSuccess({
   setScannedData,
   responseData,
 }: {
   setScannedData: Function;
-  responseData: any;
+  responseData: ScannerType;
 }) {
   const [open, setOpen] = useState(true);
   const cancelButtonRef = useRef(null);
@@ -40,7 +41,7 @@ export default function ScanSuccess({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          {success ? (
+          {!success ? (
             <div className="fixed inset-0 bg-green-200 bg-opacity-75 transition-opacity" />
           ) : (
             <div className="fixed inset-0 bg-red-200 bg-opacity-75 transition-opacity" />
@@ -62,12 +63,12 @@ export default function ScanSuccess({
                 <div>
                   <div
                     className={`mx-auto flex h-12 w-12 items-center justify-center rounded-full ${
-                      success ? "bg-green-100" : "bg-red-100"
+                      !success ? "bg-green-100" : "bg-red-100"
                     }`}
                   >
                     <CheckIcon
                       className={`h-6 w-6 ${
-                        success ? "text-green-600" : "text-red-600"
+                        !success ? "text-green-600" : "text-red-600"
                       }`}
                       aria-hidden="true"
                     />
@@ -94,7 +95,7 @@ export default function ScanSuccess({
                   <button
                     type="button"
                     className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0"
-                    onClick={() => setScannedData("")}
+                    onClick={() => setScannedData(null)}
                     ref={cancelButtonRef}
                   >
                     Close
