@@ -32,7 +32,10 @@ export default function ScanSuccess({
         as="div"
         className="relative z-10"
         initialFocus={cancelButtonRef}
-        onClose={setOpen}
+        onClose={() => {
+          setScannedData("");
+          setResponseData(null);
+        }}
       >
         <Transition.Child
           as={Fragment}
@@ -43,11 +46,7 @@ export default function ScanSuccess({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          {success ? (
-            <div className="fixed inset-0 bg-green-200 bg-opacity-75 transition-opacity" />
-          ) : (
-            <div className="fixed inset-0 bg-red-200 bg-opacity-75 transition-opacity" />
-          )}
+          <div className={`fixed inset-0  ${"bg-gray-700"} bg-opacity-75`} />
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -87,7 +86,7 @@ export default function ScanSuccess({
                       {responseData.count > 1 && (
                         <p className="text-sm text-gray-500">
                           Checked in{" "}
-                          <span className="rounded bg-gray-50">
+                          <span className="rounded text-red-600">
                             {responseData.count}
                           </span>{" "}
                           times
@@ -96,14 +95,14 @@ export default function ScanSuccess({
                       <p className="text-sm text-gray-500">
                         First check in:{" "}
                         <span className="text-sm text-gray-500">
-                          {responseData.dateTime}
+                          {formatDate(responseData.dateTime)}
                         </span>
                       </p>
                       {responseData.lastCheckIn != null && (
                         <p className="text-sm text-gray-500">
                           Latest check in:
                           <span className="text-sm text-gray-500">
-                            {responseData.lastCheckIn}
+                            {formatDate(responseData.lastCheckIn)}
                           </span>
                         </p>
                       )}
@@ -130,4 +129,8 @@ export default function ScanSuccess({
       </Dialog>
     </Transition.Root>
   );
+}
+
+function formatDate(date: string) {
+  return new Date(date).toLocaleString();
 }
