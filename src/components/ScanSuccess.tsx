@@ -84,12 +84,17 @@ export default function ScanSuccess({
                       {responseData.number}
                     </Dialog.Title>
                     <div className="mt-2">
+                      {responseData.count == 1 && (
+                        <p className="text-sm text-gray-500">First Check in</p>
+                      )}
                       <p className="text-sm text-gray-500">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Eius aliquam laudantium explicabo pariatur iste
-                        dolorem animi vitae error totam. At sapiente aliquam
-                        accusamus facere veritatis.
+                        First check in: {responseData.dateTime}
                       </p>
+                      {responseData.lastCheckIn != null && (
+                        <p className="text-sm text-gray-500">
+                          Latest check in: {responseData.lastCheckIn}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
