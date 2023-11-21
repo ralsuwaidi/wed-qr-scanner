@@ -43,7 +43,8 @@ export default function ScannerQr() {
         <Loading />
       ) : responseData !== null ? (
         <ScanSuccess
-          setScannedData={setResponseData}
+          setResponseData={setResponseData}
+          setScannedData={setScannedData}
           responseData={responseData}
         />
       ) : (
