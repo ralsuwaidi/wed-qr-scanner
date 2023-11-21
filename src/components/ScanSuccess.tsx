@@ -83,18 +83,28 @@ export default function ScanSuccess({
                       Welcome {responseData.letter}
                       {responseData.number}
                     </Dialog.Title>
-                    <div className="mt-2">
+                    <div className="mt-2 text-left">
                       {responseData.count > 1 && (
                         <p className="text-sm text-gray-500">
-                          Checked in {responseData.count} times
+                          Checked in{" "}
+                          <span className="rounded bg-gray-50">
+                            {responseData.count}
+                          </span>{" "}
+                          times
                         </p>
                       )}
                       <p className="text-sm text-gray-500">
-                        First check in: {responseData.dateTime}
+                        First check in:{" "}
+                        <span className="text-sm text-gray-500">
+                          {responseData.dateTime}
+                        </span>
                       </p>
                       {responseData.lastCheckIn != null && (
                         <p className="text-sm text-gray-500">
-                          Latest check in: {responseData.lastCheckIn}
+                          Latest check in:
+                          <span className="text-sm text-gray-500">
+                            {responseData.lastCheckIn}
+                          </span>
                         </p>
                       )}
                     </div>
