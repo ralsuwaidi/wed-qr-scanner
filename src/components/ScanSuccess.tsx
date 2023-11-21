@@ -84,8 +84,10 @@ export default function ScanSuccess({
                       {responseData.number}
                     </Dialog.Title>
                     <div className="mt-2">
-                      {responseData.count == 1 && (
-                        <p className="text-sm text-gray-500">First Check in</p>
+                      {responseData.count > 1 && (
+                        <p className="text-sm text-gray-500">
+                          Checked in {responseData.count} times
+                        </p>
                       )}
                       <p className="text-sm text-gray-500">
                         First check in: {responseData.dateTime}
