@@ -1,12 +1,11 @@
 export const updateScannedData = async (scannedData) => {
   const pattern = /^(E|R)\d+$/;
-  console.log(scannedData);
   if (pattern.test(scannedData)) {
     const number = scannedData.slice(1);
     const letter = scannedData[0];
+    const name = letter == "E" ? "Esra" : "Rashed";
     const url =
-      process.env.NEXT_PUBLIC_DB_HOST + `invitees/Esra/${number}.json`;
-
+      process.env.NEXT_PUBLIC_DB_HOST + `invitees/${name}/${number}.json`;
     // Function to make the PUT request
     const makePutRequest = async (payload) => {
       const response = await fetch(url, {
